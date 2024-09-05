@@ -1,28 +1,35 @@
-import './App.css';
-import {  BrowserRouter,Routes,  Route } from 'react-router-dom';
-import LoginPage from "./Components/signup/login"
-import Dashboard from "./Components/Dashboard/dashboard"
-import CustomForm from "./Components/Dashboard/Dashboard1"
+import { useState } from 'react'
+import Design from './components/Design'
+import Custom from './components/Dashboard1';
+import Strategy from './components/Strategy';
+import TradingForm from './components/Strategy2';
+import { MantineProvider } from "@mantine/core";
+import './App.css'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Fetchtoken from "./Components/zerodha/requestedtoken"
+
 
 function App() {
-  return (
-    <BrowserRouter>
-  
-    <Routes>
-      
-      
-     <Route path="/" element={<LoginPage />}></Route>
-     <Route path="/dashboard" element={<Dashboard/>}></Route>
-     <Route path="/dashboard1" element={<CustomForm/>}></Route>
+  const [count, setCount] = useState(0)
 
-     {/* <Route path="/zerodha" element={<Fetchtoken/>}></Route> */}
-     </Routes>
-     
-    </BrowserRouter>
+  return (
+    <>
+    <MantineProvider>
+      <Router>
+        <Routes>
+            <Route path="/" element={<Design/>}>
+            <Route path="/Strategy" element={<Custom />} />
+            <Route path="/Strategy2" element={<Strategy />} />
+            <Route path="/Strategy3" element={<TradingForm/>} />
+
+            
+            </Route>
+        </Routes>
+      </Router>
+      </MantineProvider>
+
+    </>
   )
 }
 
-export default App;
+export default App
